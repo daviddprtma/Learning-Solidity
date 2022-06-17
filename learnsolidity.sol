@@ -21,4 +21,24 @@ contract SpaceDoggos{
     }
 
     mapping(address => Doggo) doggos;
+
+    function createDoggo (string _name, uint8 _breed, uint8 _color, uint8 _face, uint8 _costume) public returns(uint doggo){
+        // Create your struct below
+
+        Doggo memory myDoggo = Doggo({
+            name: _name,
+            breed: _breed,
+            color: _color,
+            face: _face,
+            costume: _costume,
+            coordX: 0,
+            coordY: 0
+        });
+
+        doggos[msg.sender] = myDoggo;
+    }
+
+    function getSystemMap(uint _coordX, uint _coordY) public returns (uint){
+     return uint(keccak256(_coordX, _coordY));
+    }
 }
